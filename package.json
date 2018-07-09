@@ -1,0 +1,22 @@
+{
+  "name": "command_line_journal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colbisaurusrex/command_line_journal.git"
+  },
+  "author": "Colby Barthelmess",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/colbisaurusrex/command_line_journal/issues"
+  },
+  "homepage": "https://github.com/colbisaurusrex/command_line_journal#readme",
+  "dependencies": {
+    "dotenv": "^6.0.0"
+  }
+}

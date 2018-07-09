@@ -1,7 +1,8 @@
-const stdin = process.stdin;
-const stdout = process.stdout;
-const https = require('https');
-const { ask } = require('./helpers');
+const https = require('https')
+const fs = require('fs')
+const env = require('dotenv').config()
+const { ask } = require('./helpers')
+const { stdin, stdout } = process
 
 const Journal = function(){
     this.location = null
@@ -36,10 +37,20 @@ Journal.prototype.init = function(){
   .then(() => {
     return this.getEntry();
   })
+  .then(() => {
+    const filename = this.date + '_' + this.location
+    return fs.writeFileSync(
+      process.env.FILEPATH + '/' + filename,
+      this.entry,
+      (err) => err && console.log(err)
+    )
+  })
   .catch((err)=>{
     stdout.write(err)
   })
 }
+
+
 
 
 const session = new Journal()
