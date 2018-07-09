@@ -15,28 +15,21 @@ Journal.prototype.getMetaData = function(){
   return ask('Where are you?')
     .then((answer)=>{
       this.location = answer
-      stdout.write('You are in' + this.location + '\r\n')
-      return ask('What is the date (mm-dd-yyyy)? ex. 07-04-2018')
+      return ask('What is the date (mm-dd-yyyy)? ex. 07-04-2018   ')
     })
-    .then((answer)=>{
-      this.date = answer
-    })
+    .then(answer => this.date = answer)
     .catch(err => stdout.write(err))
 }
 
 Journal.prototype.getEntry = function() {
     return ask('Write away!')
-    .then((answer) => {
-        this.entry = answer
-    })
+    .then(answer => this.entry = answer)
 }
 
 
 Journal.prototype.init = function(){
   this.getMetaData()
-  .then(() => {
-    return this.getEntry();
-  })
+  .then(() => this.getEntry())
   .then(() => {
     const filename = this.date + '_' + this.location
     return fs.writeFileSync(
@@ -45,6 +38,8 @@ Journal.prototype.init = function(){
       (err) => err && console.log(err)
     )
   })
+  .then(() => stdout.write('Another entry in the books! Goodbye!'))
+  .then(() => process.exit())
   .catch((err)=>{
     stdout.write(err)
   })
