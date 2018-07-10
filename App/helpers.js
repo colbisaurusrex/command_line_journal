@@ -9,7 +9,6 @@ const ask = function(question){
     stdout.write(question + ' ')
     stdin.once('data', function(data){
       if(data){
-        console.log('data', data)
         data = data.trim();
         resolve(data)
       } else {
