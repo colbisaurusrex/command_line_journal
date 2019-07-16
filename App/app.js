@@ -1,7 +1,7 @@
 const https = require('https')
 const fs = require('fs')
 const env = require('dotenv').config()
-const { ask } = require('./helpers')
+const { ask, today } = require('./helpers')
 const { stdin, stdout } = process
 
 const Journal = function(){
@@ -15,9 +15,9 @@ Journal.prototype.getMetaData = function(){
   return ask('Where are you?')
     .then((answer)=>{
       this.location = answer
-      return ask('What is the date (mm-dd-yyyy)? ex. 07-04-2018   ')
+      return ask(`What is the date (${today()})?`)
     })
-    .then(answer => this.date = answer)
+    .then(answer => this.date = (answer.length === 0 ? today() : answer))
     .catch(err => stdout.write(err))
 }
 
