@@ -18,6 +18,16 @@ const ask = function(question){
   })
 }
 
+// Returns a string containing today's date in the
+// format of 'mm-dd-yyyy'
+const today = function() {
+  let date = new Date();
+  return String(date.getMonth() + 1).padStart(2, '0') + '-'
+    + String(date.getDate()).padStart(2, '0') + '-'
+    + String(date.getFullYear());
+}
+
 module.exports = {
     ask,
+    today
 }
